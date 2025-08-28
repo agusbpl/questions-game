@@ -1,5 +1,4 @@
 import random
-import numbers
 
 # Preguntas para el juego
 questions = [
@@ -58,4 +57,4 @@ for _ in range(3):
 
     # Se imprime un blanco al final de la pregunta
     
-    print(f"\n puntaje final: {puntaje}")
+print(f"\n puntaje final: {puntaje}")
