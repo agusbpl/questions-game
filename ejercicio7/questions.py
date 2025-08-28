@@ -1,4 +1,5 @@
 import random
+import numbers
 
 # Preguntas para el juego
 questions = [
@@ -25,6 +26,7 @@ answers = [
 correct_answers_index = [1, 2, 0, 3, 1]
 
 # El usuario deberá contestar 3 preguntas
+puntaje = 0
 for _ in range(3):
     # Se selecciona una pregunta aleatoria
     question_index = random.randint(0, len(questions) - 1)
@@ -36,16 +38,24 @@ for _ in range(3):
 
     # El usuario tiene 2 intentos para responder correctamente
     for intento in range(2):
-        user_answer = int(input("Respuesta: ")) - 1
-        # Se verifica si la respuesta es correcta
-        if user_answer == correct_answers_index[question_index]:
-            print("¡Correcto!")
-            break
+        user_answer = input("Respuesta: ")
+        if user_answer.isdigit() and (int(user_answer)) in [1, 2, 3, 4]:
+            if int(user_answer) - 1 == correct_answers_index[question_index]:
+                print("¡Correcto!")
+                puntaje += 1
+                break
+            else:
+                print("¡Incorrecto!")
+                puntaje -= 0.5
+        else:
+            print("Respuesta inválida")
+            exit(1)
     else:
         # Si el usuario no responde correctamente después de 2 intentos,
         # se muestra la respuesta correcta
-        print("Incorrecto. La respuesta correcta es:")
+        print("La respuesta correcta es:")
         print(answers[question_index][correct_answers_index[question_index]])
 
     # Se imprime un blanco al final de la pregunta
-    print()
+    
+    print(f"\n puntaje final: {puntaje}")
