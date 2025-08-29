@@ -24,54 +24,31 @@ answers = [
 # Índice de la respuesta correcta para cada pregunta, en el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 
-# El usuario deberá contestar 3 preguntas
-puntaje = 0
-for _ in range(3):
-    # Se selecciona una pregunta aleatoria
-    question_index = random.randint(0, len(questions) - 1)
-
-    # Se muestra la pregunta y las respuestas posibles
-    print(questions[question_index])
-    for i, answer in enumerate(answers[question_index]):
-        print(f"{i + 1}. {answer}")
-
-    # El usuario tiene 2 intentos para responder correctamente
-    for intento in range(2):
-        user_answer = input("Respuesta: ")
-        if user_answer.isdigit() and (int(user_answer)) in [1, 2, 3, 4]:
-            if int(user_answer) - 1 == correct_answers_index[question_index]:
-                print("¡Correcto!")
-                puntaje += 1
-                break
-            else:
-                print("¡Incorrecto!")
-                puntaje -= 0.5
-        else:
-            print("Respuesta inválida")
-            exit(1)
-    else:
-        # Si el usuario no responde correctamente después de 2 intentos,
-        # se muestra la respuesta correcta
-        print("La respuesta correcta es:")
-        print(answers[question_index][correct_answers_index[question_index]])
-
-    # Se imprime un blanco al final de la pregunta
-    
-print(f"\n puntaje final: {puntaje}")
-
-
 questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_index)), k=3)
 
-
-print()
-print()
+print("\n")
+score = 0
 for quest,answ,corr in questions_to_ask:
     print(quest)
     for i,ans in enumerate(answ):
         print(f"{i+1}.{ans}") 
-    user_choice = input("su respuesta: ")
-    if int(user_choice) - 1 == corr:
-        print("correcto")
+    for intento in range(2):
+        print(f"intento numero {intento+1}")
+        user_choice = input("su respuesta: ")
+        if (user_choice in [str(i) for i in range(1,5)]):
+            if int(user_choice) - 1 == corr:
+                print("correcto")
+                score += 1
+                break
+            else:
+                print("incorrecto")
+                score -= 0.5
+        else:
+            print("respuesta invalida")
+            exit(1)  
+    else:
+        print(f"la respuesta era {answ[corr]}") 
+print(f"\nsumaste {score} puntos")
 """
 * Comience un repositorio **local** y agregue el archivo recientemente creado.
 * Crea tu propio repositorio **remoto** en [Github](https://github.com/) y suba el archivo al repositorio remoto.
