@@ -1,5 +1,6 @@
 import random
 
+
 # Preguntas para el juego
 questions = [
     "¿Qué función se usa para obtener la longitud de una cadena en Python?",
@@ -21,10 +22,12 @@ answers = [
     ),
     ("=", "==", "!=", "==="),
 ]
+
+
 # Índice de la respuesta correcta para cada pregunta, en el mismo orden que las preguntas
 correct_answers_index = [1, 2, 0, 3, 1]
 
-questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_index)), k=3)
+questions_to_ask = random.sample(list(zip(questions, answers, correct_answers_index)), k=3)
 
 print("\n")
 score = 0
@@ -49,25 +52,3 @@ for quest,answ,corr in questions_to_ask:
     else:
         print(f"la respuesta era {answ[corr]}") 
 print(f"\nsumaste {score} puntos")
-"""
-* Comience un repositorio **local** y agregue el archivo recientemente creado.
-* Crea tu propio repositorio **remoto** en [Github](https://github.com/) y suba el archivo al repositorio remoto.
-* Agrega el `README.md` con tu nombre y número de estudiante.
-* Modifique el programa anterior con las siguientes funcionalidades:
-    - El juego tiene un bug. Si el usuario ingresa un número de respuesta no válido por ejemplo 42 o 
-    "huevos con spam" el programa falla con un error. Modifica el mismo para que si la respuesta no
-    es un número o bien no está en el rango de las respuestas posibles muestre un mensaje diciendo: 
-    "Respuesta no válida" y termine de inmediato con exit status igual a 1. 
-    - Modifique el juego para que al final de la partida se muestre el puntaje del jugador o
-    jugadora. El puntaje se calcula de la siguiente forma, cada intento fallido descuenta 0.5 puntos
-    y cada acierto suma 1 punto.
-    - Modifique el juego para, en lo posible, no acceder a las 3 listas usando índices. Ayuda:
-    ```python
-    questions_to_ask = random.choices(list(zip(questions, answers, correct_answers_index)), k=3)
-    ```
-    - Modifique el juego para que no muestre preguntas repetidas (investigue la función
-    `random.sample()`)
-
-<div style="page-break-after: always;"></div>
-
-"""
